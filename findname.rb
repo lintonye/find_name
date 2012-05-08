@@ -35,7 +35,7 @@ def find_in_dict(dict, name)
   return results
 end
 
-def run(dict_file, input_file, debug=false, max_match=20)  
+def run_findme(dict_file, input_file, debug=false, max_match=20)  
   # parse dict
   dict = []
   open(dict_file, "r") do |lines|
@@ -94,7 +94,7 @@ def cmd_line
     input_file = ARGV[1]
     debug = ARGV[2]!=nil and ARGV[2].include?("-d")
     max_match = 20
-    run dict_file, input_file, debug, max_match
+    run_findme dict_file, input_file, debug, max_match
   end
 end
   
