@@ -85,17 +85,18 @@ def run(dict_file, input_file, debug=false, max_match=20)
   output_file.close
 end
 
-###########  MAIN ############
-
-if ARGV.length<2 
-  puts "Usage: findname <dictionary file> <input file> [-debug]"
-  puts "Example: findname standard.csv input.csv"
-else
-  dict_file = ARGV[0]
-  input_file = ARGV[1]
-  debug = ARGV[2]!=nil and ARGV[2].include?("-d")
-  max_match = 20
-  run dict_file, input_file, debug, max_match
+def cmd_line
+  if ARGV.length<2 
+    puts "Usage: findname <dictionary file> <input file> [-debug]"
+    puts "Example: findname standard.csv input.csv"
+  else
+    dict_file = ARGV[0]
+    input_file = ARGV[1]
+    debug = ARGV[2]!=nil and ARGV[2].include?("-d")
+    max_match = 20
+    run dict_file, input_file, debug, max_match
+  end
 end
   
+cmd_line unless defined?(API)
 
