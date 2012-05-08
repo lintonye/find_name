@@ -35,17 +35,7 @@ def find_in_dict(dict, name)
   return results
 end
 
-###########  MAIN ############
-
-if ARGV.length<2 
-  puts "Usage: findname <dictionary file> <input file> [-debug]"
-  puts "Example: findname standard.csv input.csv"
-else
-  dict_file = ARGV[0]
-  input_file = ARGV[1]
-  debug = ARGV[2]!=nil and ARGV[2].include?("-d")
-  max_match = 20
-  
+def run(dict_file, input_file, debug=false, max_match=20)  
   # parse dict
   dict = []
   open(dict_file, "r") do |lines|
@@ -93,5 +83,19 @@ else
   end
   
   output_file.close
-  
 end
+
+###########  MAIN ############
+
+if ARGV.length<2 
+  puts "Usage: findname <dictionary file> <input file> [-debug]"
+  puts "Example: findname standard.csv input.csv"
+else
+  dict_file = ARGV[0]
+  input_file = ARGV[1]
+  debug = ARGV[2]!=nil and ARGV[2].include?("-d")
+  max_match = 20
+  run dict_file, input_file, debug, max_match
+end
+  
+
