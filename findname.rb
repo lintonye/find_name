@@ -1,5 +1,6 @@
-#!/usr/bin/ruby
-
+#!/usr/local/bin/ruby
+# encoding: utf-8
+#
 module Findname
   class Entry
     attr_accessor :name, :keywords
@@ -40,7 +41,7 @@ module Findname
   def self.run(dict_file, input_file, output_file_path='output.csv', debug=false, max_match=20)  
     # parse dict
     dict = []
-    open(dict_file, "r") do |lines|
+    open(dict_file, "rb") do |lines|
       lines.each_line do |line|
         pair = line.split(",")
         dict << Entry.new(pair[1].strip, pair[0].split(" ")) if pair[1]!=nil

@@ -1,4 +1,5 @@
-#!/usr/bin/ruby
+#!/usr/local/bin/ruby
+# encoding: utf-8
 #
 require './findname.rb'
 require 'pathname'
