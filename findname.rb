@@ -88,6 +88,12 @@ module Findname
     output_file.close
   end
 
+  def self.preprocess(file)
+    content = File.open(file, 'rb').read
+    lines = content.gsub(/(\r\n)|(\r)/, "\n")
+    File.open(file,'w').write(lines)
+  end
+
   def self.cmd_line
     if ARGV.length<2 
       puts "Usage: findname <dictionary file> <input file> [-debug]"
@@ -97,6 +103,8 @@ module Findname
       input_file = ARGV[1]
       debug = ARGV[2]!=nil and ARGV[2].include?("-d")
       max_match = 20
+      preprocess(dict_file)
+      preprocess(input_file)
       run dict_file, input_file, 'output.csv', debug, max_match
     end
   end
