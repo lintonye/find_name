@@ -30,7 +30,14 @@ module Findname
 
   def self.find_in_dict(dict, name)
     results = []
-    name = name.downcase
+    begin
+      name = name.downcase
+    rescue
+      # Remove invalid chars according to http://stackoverflow.com/a/8873922/3973320
+      name.encode!('UTF-16', 'UTF-8', :invalid => :replace, :replace => '')
+      name.encode!('UTF-8', 'UTF-16')
+      name = name.downcase
+    end
     dict.each do |entry|
       hits = entry.count_matches(name)
       results<<[hits, entry] if hits[0]>0
